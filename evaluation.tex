@@ -1,16 +1,11 @@
-\section{Results}
-\label{sec:eval}
-Our TDA and nonTDA pipelines start with embedding one FCN for each rs-fMRI scan as an adjacency matrix (section~\ref{sec:fmri_to_fcn}). In this stage, we get $371,616$ adjacency matrices ($(316 \times 86) + (316 \times 336) + (316 \times 754)$) for three temporal sampling periods ($2500ms$, $1400ms$, $645ms$). Each matrix has a dimension of $113 \times 113$. For example, the FCNs for the three sampling periods for subject $1$ are shown in Figure~\ref{fig:wd1}. In the second stage of the pipelines, we embed the FCN using Pearson's correlation coefficients and range the values between $0$ and $1$. The third stage of the TDA pipeline extracts 0-dimensional persistent barcodes from the matrices using persistent homology (section~\ref{sec:ms_to_pd}). The bottom row of Figure~\ref{fig:wd1} shows the extracted 0-dimensional barcodes for the three TRs. In the nonTDA pipeline, instead of using persistent homology, we used correlation coefficients between the timesteps for the three TRs. We continue to the statistical analysis phase, where we evaluate the resiliency of our TDA framework on different temporal sampling periods of rs-fMRI datasets (section~\ref{sec:si}).
-
-
-\begin{figure}[H]%[!htb]
+\begin{figure}[!ht]%[!htb]
 	\centering
-	\begin{subfigure}[t]{1\textwidth}
+	\begin{subfigure}[!ht]{1\textwidth}
 		\centering
 		\hspace{8mm}
 		\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/clusters/subject_32.png}\hfill
 	\end{subfigure}
-	\begin{subfigure}[t]{1\textwidth}
+	\begin{subfigure}[!ht]{1\textwidth}
 		\centering
 		\hspace{8mm}
 		\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/clusters/subject_32_non_tda.png}\hfill
@@ -19,41 +14,47 @@ Our TDA and nonTDA pipelines start with embedding one FCN for each rs-fMRI scan 
 	\label{fig:clus}
 \end{figure}
 
-In the TDA pipeline, we use the Wasserstein distance metric on the persistent diagrams for all the subjects for all three temporal sampling periods. On the contrary, in the nonTDA pipeline, we directly use the correlation coefficient on the extracted FCNs. Adjacency matrices generated after this stage in both pipelines are similar in size for respective temporal sampling periods. For temporal sampling period $2500ms$ with $86$ timesteps in the TDA pipeline, each subject yields adjacency matrix $WD$ of size ($86 \times 86$) where $WD_{ij}$ represents the pairwise Wasserstein distance between timestep $i$ and $j$. In the nonTDA pipeline for the same data cohort, each subject yields adjacency matrix $A$ of size ($86 \times 86$) where $A_{ij}$ represents the pairwise norm between timestep $i$ and $j$. Similarly, $1400ms$ and $645ms$ yield adjacency matrix of size ($336 \times 336$) and ($754 \times 754$), respectively, for each of the subjects during TDA and nonTDA analysis. This high dimensionality of the matrix size makes it challenging to apply statistical analysis. For this reason, we applied multidimensional scaling (MDS) and reduced the size of the matrices to fit into a two-dimensional surface for all the data cohorts($2500ms$: ($86 \times 2$), $1400ms$: ($336 \times 2$), $645ms$: ($754 \times 2$)). Then, we applied clustering on the MDS data using the k-means clustering algorithm with Sihouette analysis to select the number of clusters. Finally, we get the number of clusters for all 316 subjects for both pipelines. 
+\section{Results}
+\label{sec:eval}
+Our TDA and nonTDA pipelines start with embedding one FCN for each rs-fMRI scan as an adjacency matrix (section~\ref{sec:fmri_to_fcn}). In this stage, we get $371,616$ adjacency matrices ($(316 \times 86) + (316 \times 336) + (316 \times 754)$) for three temporal sampling periods ($2500ms$, $1400ms$, $645ms$). Each matrix has a dimension of $113 \times 113$. For example, the FCNs for the three sampling periods for subject $1$ are shown in Figure~\ref{fig:wd1}. In the second stage of the pipelines, we embed the FCN using Pearson's correlation coefficients and range the values between $0$ and $1$. The third stage of the TDA pipeline extracts 0-dimensional persistent barcodes from the matrices using persistent homology (section~\ref{sec:ms_to_pd}). The bottom row of Figure~\ref{fig:wd1} shows the extracted 0-dimensional barcodes for the three TRs. In the nonTDA pipeline, instead of using persistent homology, we used correlation coefficients between the timesteps for the three TRs. We continue to the statistical analysis phase, where we evaluate the resiliency of our TDA framework on different temporal sampling periods of rs-fMRI datasets (section~\ref{sec:si}).
 
-\begin{figure}[H]%[!htb]
+
+\begin{figure}[!ht]
 	\centering
-	\begin{subfigure}[t]{1\linewidth}
+	\begin{subfigure}[!ht]{1\linewidth}
 		\centering
 		\hspace{8mm}
-		\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/pairwise_2500_1400.png}\hfill
+		\includegraphics[width=0.8\textwidth, height=0.28\textheight]{figures/pairwise_2500_1400.png}\hfill
 		%\hspace{-15mm}
 	\end{subfigure}
-	\begin{subfigure}[t]{1\linewidth}
+	\begin{subfigure}[!ht]{1\linewidth}
 		\centering
 		\hspace{8mm}
-		\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/pairwise_1400_645.png}\hfill
+		\includegraphics[width=0.8\textwidth, height=0.28\textheight]{figures/pairwise_1400_645.png}\hfill
 		%\hspace{-15mm}
 	\end{subfigure}
-	\begin{subfigure}[t]{1\linewidth}
+	\begin{subfigure}[!ht]{0.8\linewidth}
 		\centering
 		\hspace{8mm}
-		\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/pairwise_645_2500.png}\hfill
+		\includegraphics[width=1\textwidth, height=0.28\textheight]{figures/pairwise_645_2500.png}\hfill
 		%\hspace{-15mm}
 	\end{subfigure}
 	\caption{Pairwise cluster distance comparison between TDA and nonTDA pipeline. Comparison between temporal sampling $2500$ and $1400$ (top row), temporal sampling $1400$ and $645$ for TDA and nonTDA pipeline(top row), temporal sampling $645$ and $2500$(bottom row)}
 	\label{fig:clus_distance_pairwise}
 \end{figure}
 
+In the TDA pipeline, we use the Wasserstein distance metric on the persistent diagrams for all the subjects for all three temporal sampling periods. On the contrary, in the nonTDA pipeline, we directly use the correlation coefficient on the extracted FCNs. Adjacency matrices generated after this stage in both pipelines are similar in size for respective temporal sampling periods. For temporal sampling period $2500ms$ with $86$ timesteps in the TDA pipeline, each subject yields adjacency matrix $WD$ of size ($86 \times 86$) where $WD_{ij}$ represents the pairwise Wasserstein distance between timestep $i$ and $j$. In the nonTDA pipeline for the same data cohort, each subject yields adjacency matrix $A$ of size ($86 \times 86$) where $A_{ij}$ represents the pairwise norm between timestep $i$ and $j$. Similarly, $1400ms$ and $645ms$ yield adjacency matrix of size ($336 \times 336$) and ($754 \times 754$), respectively, for each of the subjects during TDA and nonTDA analysis. This high dimensionality of the matrix size makes it challenging to apply statistical analysis. For this reason, we applied multidimensional scaling (MDS) and reduced the size of the matrices to fit into a two-dimensional surface for all the data cohorts($2500ms$: ($86 \times 2$), $1400ms$: ($336 \times 2$), $645ms$: ($754 \times 2$)). Then, we applied clustering on the MDS data using the k-means clustering algorithm with Sihouette analysis to select the number of clusters. Finally, we get the number of clusters for all 316 subjects for both pipelines. 
+
+
+
 Figure \ref{fig:clus} shows the clustering result for a single subject (subject 32) for all three data cohorts ($2500ms$, $1400ms$, $645ms$). The top row of the figure represents the plotted clusters using the TDA pipeline, and we see that each data cohort here has two clusters. The bottom row of the figure shows the plotted clusters for the same subject using the nonTDA pipeline, and the number of clusters varies for the data cohorts. As the number of clusters remains unchanged for different temporal sampling periods using the TDA pipeline and varies largely for the nonTDA pipeline, it shows the invariant of the TDA pipeline. Thus, this illustration gives an intuition towards our hypothesis of the resiliency of persistent homology-based methods to different data acquisition parameters (temporal sampling periods) in brain rs-fMRI data analysis.
 
-\begin{figure}[H]%[!htb]
+\begin{figure}[!ht]%[!htb]
 	\centering
-	\begin{subfigure}[t]{1\textwidth}
+	\begin{subfigure}[!ht]{1\textwidth}
 		\centering
 		\hspace{8mm}
-		\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/tda_nontda.png}\hfill
-		%\hspace{-15mm}
+		\includegraphics[width=0.8\textwidth]{figures/tda_nontda.png}\hfill
 	\end{subfigure}
 	\caption{Cluster distance comparison between TDA and nonTDA pipeline}
 	\label{fig:clus_distance}
@@ -84,7 +85,7 @@ Overall, these results demonstrate that TDA captures fundamental temporal proper
 
 \setlength{\tabcolsep}{0.5em} % for the horizontal padding
 {\renewcommand{\arraystretch}{1.2}% for the vertical padding
-    \begin{table}[t]
+    \begin{table}[!ht]
         \centering
         \begin{tabular}
         {| c | c | c | c | c | c | c |}

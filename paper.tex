@@ -1,35 +1,82 @@
 %\documentclass[9pt,shortpaper,twoside,web]{ieeecolor}
 %\documentclass[journal,twoside,web]{ieeecolor}
-\documentclass[runningheads]{llncs}
-%\usepackage{generic}
-\usepackage{cite}
-\usepackage{amsmath,amssymb,amsfonts}
-\usepackage{algorithmic}
-\usepackage{graphicx}
-\usepackage{textcomp}
-\usepackage{multicol}
-\usepackage{multirow}
-\usepackage{subcaption}
-\usepackage{amsfonts}
+%\documentclass[runningheads]{llncs}
+%\usepackage{cite}
+%\usepackage{amsmath,amssymb,amsfonts}
+%\usepackage{algorithmic}
+%\usepackage{graphicx}
+%\usepackage{textcomp}
+%\usepackage{multicol}
+%\usepackage{multirow}
+%\usepackage{subcaption}
+%\usepackage{amsfonts}
+%\usepackage{listings}
+%\usepackage{authblk}
+%\usepackage[hidelinks]{hyperref}
+%\usepackage[table,xcdraw]{xcolor}
+%\usepackage{float}
+
+\documentclass[11pt,letterpaper,english]{article}
+ \usepackage[table,xcdraw]{xcolor}
+\usepackage{enumitem}
+\usepackage[font=bf]{caption}
+\usepackage{sectsty}
+\usepackage{pslatex}
+\usepackage[margin=1in]{geometry}
+\usepackage{url}
 \usepackage{listings}
-\usepackage{authblk}
-\usepackage[hidelinks]{hyperref}
-\usepackage[table,xcdraw]{xcolor}
-\usepackage{float}
-\usepackage{changes} % to highlight the changes
-%\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-%    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
-%\markboth{\journalname, VOL. XX, NO. XX, XXXX 2020}
-%{Author \MakeLowercase{\textit{et al.}}: Preparation of Papers for IEEE TRANSACTIONS ON MEDICAL IMAGING}
+\usepackage{wrapfig}
+\usepackage{booktabs}
+%\usepackage{color}
+%\usepackage{xcolor}
+\usepackage{graphicx}
+%\usepackage{subfigure}
+\usepackage{epsfig}
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage{epstopdf}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage{amsmath}
+%\usepackage{algorithmic}
+%\usepackage{algorithm}
+\usepackage{multicol}
+%\usepackage{bibunits}
+%\usepackage{setspace}
+%\usepackage{epstopdf}
+%\usepackage{amsmath}
+%\usepackage{pdfsync}
+%\usepackage{fullpage}
+%\usepackage{hyperref}
+%\usepackage{bigstrut}
+%\usepackage{mathrsfs}
+\usepackage{amssymb}
+%\usepackage[compact]{titlesec}
+%\usepackage{pslatex}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{wrapfig,lipsum,booktabs}
+\usepackage{subcaption}
+
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+
+
+
+%\usepackage{changes} % to highlight the changes
 \newcommand{\change}[1]{\textcolor{red}{#1}}
+
+
 \begin{document}
-\title{Temporal PH analysis}
+\title{Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et}
 \pagestyle{empty}
 
 \author{Ahmedur Rahman Shovon~$^\star$, Sidharth Kumar \thanks{Ahmedur Rahman Shovon (email: ashovon@uab.edu) and Sidharth Kumar (email: sid14@uab.edu) are at the computer science department of University of Alabama at Birmingham, Birmingham, AL 35294 USA.}
 , Gopikrishna Deshpande \thanks{Gopikrishna Deshpande is at AU MRI Research Center, Department of Electrical and Computer Engineering, Auburn University, AL, USA. He is also affiliated with the following: (a) Department of Psychological Sciences, Auburn University, Auburn, USA (b) Alabama Advanced Imaging Consortium, Birmingham, USA, (c) Center for Neuroscience, Auburn University, USA, (d) School of Psychology, Capital Normal University, Beijing, China, (e) Key Laboratory for Learning and Cognition, Capital Normal University, Beijing, China, (f) Department of Psychiatry, National Institute of Mental Health and Neurosciences, Bangalore, India and (g) Centre for Brain Research, Indian Institute of Science, Bangalore, India. (e-mail: gzd0005@auburn.edu)}
 }
-\institute{}
+%\institute{}
 
 
 %\author{Sidharth Kumar\inst{1} \and
@@ -50,9 +97,11 @@
 %``This work was supported in part by the U.S. Department of Commerce under %Grant BS123456.'' }
 %\thanks{Sidharth Kumar is at computer science department of University of Alabama at Birmingham, Birmingham, AL 35294 USA (e-mail:sid14@uab.edu). }
 %\thanks{Gopikrishna Deshpande is at AU MRI Research Center, Department of Electrical and Computer Engineering, Auburn University, AL, USA. He is also affiliated with the following: (a) Department of Psychological Sciences, Auburn University, Auburn, AL, USA (b) Alabama Advanced Imaging Consortium, Birmingham, AL, USA, (c) Center for Neuroscience, Auburn University, AL, USA, (d) School of Psychology, Capital Normal University, Beijing, China, (e) Key Laboratory for Learning and Cognition, Capital Normal University, Beijing, China, (f) Department of Psychiatry, National Institute of Mental Health and Neurosciences, Bangalore, India and (g) Centre for Brain Research, Indian Institute of Science, Bangalore, India. (e-mail: gzd0005@auburn.edu)}}
-
+\date{}
 
 \maketitle
+
+
 
 \vspace{-0.4cm}
 \begin{abstract}
@@ -62,9 +111,9 @@ Based on functional connectivity networks (FCN) discovered from resting-state fu
 % There is increasing interest in investigating brain function based on functional connectivity networks (FCN) obtained from resting-state functional magnetic resonance imaging (fMRI). FCNs, typically obtained using measures of time series association such as Pearson’s correlation, are sensitive to data acquisition parameters such as sampling period. This introduces non-neural variability in data pooled from different acquisition protocols and MRI scanners, negating the advantages of larger sample sizes in pooled data. To address this, we hypothesize that the topology or shape of brain networks must be preserved irrespective of how densely it is sampled, and metrics which capture this topology may be statistically similar across sampling periods, thereby alleviating this source of non-neural variability. Accordingly, we present an end-to-end pipeline that uses persistent homology, a branch of topological data analysis, to demonstrate \emph{similarity} across FCNs acquired at different temporal sampling periods. Persistent homology (PH) as a technique extracts topological features by capturing the network organization across all continuous threshold values, as opposed to graph theoretic methods, which fix a discrete network topology by thresholding the connectivity matrix. The extracted topological features are encoded in the form of persistent diagrams that can be compared against one another using the earth-moving metric, also popularly known as the Wasserstein distance. We extract topological features from three data cohorts, each acquired at different temporal sampling periods and demonstrate that these features are statistically the same, hence, empirically showing that PH is invariant to data acquisition parameters such as sampling period. 
 \end{abstract}
 
-\begin{keywords}
-Topological data analysis, TDA, fMRI, Persistent homology
-\end{keywords}
+%\begin{keywords}
+%Topological data analysis, TDA, fMRI, Persistent homology
+%\end{keywords}
 
 \input{introduction.tex}
 \input{rwork}
@@ -74,13 +123,14 @@ Topological data analysis, TDA, fMRI, Persistent homology
 \input{conclusion}
 
 
-\section{\textcolor{red}{Acknowledgement}}
+\section{\textcolor{red}{Acknowledgment}}
 We thank Xi-Nian Zuo from Beijing Normal University for sharing some of the data with us. We are also grateful to the entire Enhanced Nathan Kline Institute - Rockland Sample (NKI-RS) team for providing free access to the raw MRI data. Principal support for the enhanced NKI-RS project is provided by the NIMH BRAINS R01MH094639-01 (PI Milham). Funding for key personnel also provided in part by the New York State Office of Mental Health and Research Foundation for Mental Hygiene. Funding for the decompression and augmentation of administrative and phenotypic protocols provided by a grant from the Child Mind Institute (1FDN2012-1). Additional personnel support provided by the Center for the Developing Brain at the Child Mind Institute, as well as NIMH R01MH081218, R01MH083246, and R21MH084126. Project support also provided by the NKI Center for Advanced Brain Imaging (CABI), the Brain Research Foundation, and the Stavros Niarchos Foundation.
 
 
 \bibliographystyle{IEEEtran}
 \bibliography{PH}
 
+\clearpage
 \appendix
 \input{supplimentary}
 \end{document}

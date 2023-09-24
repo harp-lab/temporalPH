@@ -9,15 +9,15 @@ We extend our experiments by using the existing mapping for Pearson’s correlat
 
 This mapping is used by the existing literature \cite{smith2011network, 7164127,lee2011discriminative, 6307875, edelsbrunner2008persistent}. This mapping ensures the distance dissimilarity for correlated and anti-correlated nodes. We run the TDA and nonTDA pipelines using this mapping and generates the clustering using both Wasserstein and Bottleneck distance.
 
-\begin{figure}[!tbh]
+\begin{figure}[!th]
 	\centering
-	\begin{subfigure}[t]{1\textwidth}
+	\begin{subfigure}[!th]{1\textwidth}
 		\centering
 		\hspace{8mm}
 		\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/new_formula_tda_bn_subject_32.png}\hfill
 		%\hspace{-15mm}
 	\end{subfigure}
-	\begin{subfigure}[t]{1\textwidth}
+	\begin{subfigure}[!th]{1\textwidth}
 		\centering
 		\hspace{8mm}
 		\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/new_formula_nontda_subject_32.png}\hfill
@@ -31,7 +31,7 @@ Figure \ref{fig:clus_new_formula} shows the clustering result for a single subje
 
 \setlength{\tabcolsep}{0.5em} % for the horizontal padding
 {\renewcommand{\arraystretch}{1.2}% for the vertical padding
-    \begin{table}[t]
+    \begin{table}[!th]
         \centering
         \begin{tabular}
         {| c | c | c | c | c |}
@@ -61,7 +61,7 @@ Figure \ref{fig:clus_new_formula} shows the clustering result for a single subje
 
 We capture the number of clusters for 316 subjects for all three data cohorts for both pipelines with this mapping using Equaltion \ref{eq:dis}. Table \ref{tab:clustering_new_formula} shows the distance analysis for both of the pipelines. In the TDA pipeline with Bottleneck distance, we see that majority of the subjects ($59\%$) have a distance less than or equal to one for the data cohorts. On the other hand, in the nonTDA pipeline, less than $3\%$ of the subjects have a distance less than or equal to one. We also perform a pairwise comparison of the number of clusters for the data cohorts for both of the pipelines. Table \ref{tab:tda_between_new_ws} shows the pairwise distance between the data cohorts in the TDA pipeline using Wasserstein distance. Table \ref{tab:tda_between_new_bn} shows the pairwise distance between the data cohorts in the TDA pipeline using Bottleneck distance. Table \ref{tab:nontda_between_new_eu} shows the pairwise distance between the data cohorts in the traditional FCN analysis pipeline (nonTDA). 
 
-    \begin{table}[t]
+    \begin{table}[!th]
         \centering
         \begin{tabular}
         {| c | c | c | c | c | c | c |}
@@ -89,7 +89,7 @@ We capture the number of clusters for 316 subjects for all three data cohorts fo
     \end{table}    
     
 
-    \begin{table}[t]
+    \begin{table}[!th]
         \centering
         \begin{tabular}
         {| c | c | c | c | c | c | c |}
@@ -117,7 +117,7 @@ We capture the number of clusters for 316 subjects for all three data cohorts fo
     \end{table}    
 
 
-    \begin{table}[t]
+    \begin{table}[!th]
         \centering
         \begin{tabular}
         {| c | c | c | c | c | c | c |}

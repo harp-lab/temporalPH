@@ -3,7 +3,7 @@
 \label{sec:methods}
 \vspace{-0.1cm}
 
-\begin{figure}[H]%[!htb]
+\begin{figure}[t]%[!htb]
 	\centering
 	\begin{subfigure}[t]{1\textwidth}
 		\centering
@@ -34,7 +34,7 @@ Our TDA pipeline has the following steps:
 \end{enumerate}
 
 
-\begin{figure}[H]%[!htb]
+\begin{figure}[t]%[!htb]
 	\centering	
 	\includegraphics[width=1\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/stacked.png}
 	\caption{The FCN and extracted topological feature as 0-dimensional barcodes for subject $32$ at different time points for temporal sampling periods $645ms$ (top), $1400ms$ (center), and $2500ms$ (bottom). The matrix size is $113 \times 113$.}
@@ -95,6 +95,13 @@ For each real number $t$ where topological features are changed, we consider the
 In our pipeline, we generate 0-dimensional persistent barcodes for each FCN. Each FCN has $113$ vertices that form the finite set of points $F$ where the value $d_i$ represents the pairwise distance between the points. We extract 0-dimensional barcodes using persistent homology for all the $371,616$ FCNs $((316 \times 86) + (316 \times 336) + (316 \times 754))$. An illustration of the extracted barcodes at $timestep=1$ for all three temporal sampling periods ($645ms$, $1400ms$, $2500ms$) for a single subject is shown in Figure \ref{fig:wd1}.
 
 
+\begin{figure}[!ht]
+	\centering	
+	\includegraphics[height=0.9\textheight]{figures/tda_pipeline.png}
+	\caption{TDA pipeline.}
+	\label{fig:tda_pipeline}
+\end{figure}
+
 \subsection{Statistical analysis}
 \label{sec:si}
 
@@ -106,6 +113,7 @@ We develop two frameworks for statistical analysis: (a) topological data analysi
 
 \subsubsection{Topological data analysis framework}
 \label{sec:tda_pipeline}
+
 
 
 
@@ -128,11 +136,11 @@ D(S_i)_{t_1,t_2} = d_W(P_{S_i,t_1}, P_{S_i,t_2}) \quad \text{for } t_1, t_2 = 1,
 
 In Eq. \ref{eq:tda_dis}, we compute the pairwise Wasserstein distance between persistence diagrams at times $t_1$ and $t_2$ which gives a $T_k \times T_k$ distance matrix for each subject $S_i$. We have three data cohorts ($645ms$, $1400ms$, $2500ms$) with different timesteps (754, 336, 86). Thus, we get 316 adjacency matrices for each data cohort with size ($754 \times 754$), ($336 \times 336$), and ($86 \times 86$), respectively.
 
-\begin{figure}[H]%[!htb]
+\begin{figure}[!ht]%[!htb]
 	\centering	
-	\includegraphics[width=0.9\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/tda_pipeline.png}
-	\caption{TDA pipeline.}
-	\label{fig:tda_pipeline}
+	\includegraphics[height=0.9\textheight]{figures/non_tda_pipeline.png}
+	\caption{Non TDA pipeline}
+	\label{fig:nontda_pipeline}
 \end{figure}
 
 These high dimensional adjacency matrices are complex to analyze by statistical methods. To make it interpretable by the statistical methods, We apply two component multidimensional scaling (MDS) technique to reduce the dimensionality of the matrices. After this stage, we get 316 adjacency matrices for each data cohort with size ($ 754 \times 2 $), ($ 336 \times 2 $), and ($ 86 \times 2 $). The two-dimensional MDS results are plotted using scatter plots that give an intuition to use clustering to calculate the similarity between the TRs. We apply the k-means clustering technique to the MDS results to get the number of clusters for the reduced-sized matrices. As k-means clustering requires configuring the number of clusters $n$ before the cluster computation, we choose $n$ using a well-known approach called Silhouette analysis. Using Silhouette analysis, we choose $n$ that gives the maximum Silhouette score for the given adjacency matrices between the range from 2 to 16 \cite{scikit-learn, rousseeuw1987silhouettes}. After calculating the number of clusters for all three data cohorts, we get the number of clusters for all 316 subjects across these data cohorts. A similar number of clusters for the same subject across three data cohorts will indicate the similarity between the subjects for different data acquisition parameters (different TRs in our case). If we get significant similarity between the TRs, we can conclude the resiliency of persistent homology for rs-fMRI data analysis with different data acquisition parameters.
@@ -142,12 +150,7 @@ These high dimensional adjacency matrices are complex to analyze by statistical 
 \subsubsection{Traditional FCN analysis}
 \label{sec:nontda_pipeline}
 Alongside the TDA framework, we also develop a nonTDA framework to show the efficiency of persistent homology over the traditional FCN analysis for the rs-fMRI dataset with different temporal sampling periods. The nonTDA framework is illustrated in Figure \ref{fig:nontda_pipeline}. Instead of the persistent diagrams or applying any persistent homology methods, we use a correlation coefficient between the timesteps for all three data cohorts. 
-\begin{figure}[H]%[!htb]
-	\centering	
-	\includegraphics[width=0.9\textwidth, trim={0cm, 0.0cm, 0.0cm, 0.0cm}]{figures/non_tda_pipeline.png}
-	\caption{Non TDA pipeline}
-	\label{fig:nontda_pipeline}
-\end{figure}
+
 
 Let,
 \begin{align*}
